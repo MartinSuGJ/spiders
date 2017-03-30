@@ -1,0 +1,16 @@
+# reminder
+# virtualenv name: ScrapeProject
+
+1. Error 'pg_config executable not found' while you pip install the requirements.txt
+Solution: 'brew install postgresql' on Mac OS X
+
+2. Work on virtualenv
+    workon virtualenv ScrapyProject
+
+3. Deactivate virtualenv
+    deactivate ScrapyProject
+
+4. sudo pip install -r requirements.txt
+
+
+
