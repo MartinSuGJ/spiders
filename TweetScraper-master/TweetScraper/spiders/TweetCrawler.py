@@ -80,7 +80,7 @@ class TweetScraper(CrawlSpider):
             yield item
 
         ### for text only tweets
-        items = page.xpath('//li[@data-item-type="tweet"]/div') 
+        items = page.xpath('//li[@data-item-type="tweet"]/div')
         for item in self.parse_tweet_item(items):
             yield item
 
@@ -106,7 +106,7 @@ class TweetScraper(CrawlSpider):
                 tweetItem['datetime'] = \
                     item.xpath(
                         './/div[@class="content"]/div[@class="stream-item-header"]/small[@class="time"]/a/span/@data-time').extract()[0]
-                
+
 
                 ### get photo
                 has_cards = item.xpath('.//@data-card-type').extract()
