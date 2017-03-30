@@ -21,8 +21,13 @@ SAVE_MOVIE_PATH = '/Users/guangjun/Desktop/Guangjun/Wallpapers/'
 
 
 ITEM_PIPELINES = {
-    'AllMacWallpaperScraper.pipelines.AllmacwallpaperscraperPipeline' : 300
+    'scrapy.contrib.pipeline.images.ImagesPipeline': 1
 }
+
+IMAGES_STORE = '/Users/guangjun/Desktop/Guangjun/Wallpapers/' #用来存储下载的图片
+IMAGES_EXPIRES = 90        # 90天的图片失效期限
+IMAGES_MIN_HEIGHT = 100    # 图片的最小高度
+IMAGES_MIN_WIDTH = 100     # 图片的最小宽度
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'AllMacWallpaperScraper (+http://www.yourdomain.com)'

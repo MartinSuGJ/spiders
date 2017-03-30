@@ -8,7 +8,9 @@
 import scrapy
 
 
-class AllmacwallpaperscraperItem(scrapy.Item):
+class WallpaperItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    images = scrapy.Field()
+    image_urls = scrapy.Field()
+    iamge_name = scrapy.Field()

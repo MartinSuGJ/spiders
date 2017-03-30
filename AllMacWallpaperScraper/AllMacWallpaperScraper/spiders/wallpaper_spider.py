@@ -9,7 +9,7 @@ from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import Join, MapCompose, TakeFirst
-from AllMacWallpaperScraper.items import AllmacwallpaperscraperItem
+from AllMacWallpaperScraper.items import WallpaperItem
 from scrapy import Request
 import urllib
 from AllMacWallpaperScraper import settings
@@ -33,14 +33,13 @@ class WallpaperSpider(BaseSpider):
         yield Request(next_page, callback=self.parse)
 
     def parse_image(self, response):
+        wallpaper = WallpaperItem()
         save_dir = settings.SAVE_MOVIE_PATH
         file_url = response.xpath('//div[@class="downloadList"]')[2].xpath('.//a/@href').extract()[0]
         file_url = self.domain + file_url
         file_name = save_dir + re.search('.*wallpapers/(.*?)-2880', file_url).group(1) + '.jpg'
-        urllib.urlretrieve(file_url, file_name)
+        wallpaper['image_urls'] = [file_url]
+        wallpaper["iamge_name"] = re.search('.*wallpapers/(.*?)-2880', file_url).group(1)
+        # urllib.urlretrieve(file_url, file_name)
         print 'Downloaded %s' % (file_name)
-
-        next_page = response.xpath('//li[@class="next"]/a/@href').extract()[0]
-        if next_page is not None:
-            next_page = self.domain + next_page
-            yield Request(next_page, callback=self.parse)
+        yield wallpaper
